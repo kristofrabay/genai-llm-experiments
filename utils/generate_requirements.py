@@ -101,6 +101,7 @@ def main():
             if package in installed_packages:
                 f.write(f'{package}=={installed_packages[package]}\n')
             else:
+                f.write(f'{package}  # Not installed\n')
                 print(f"Warning: Package '{package}' is imported but not installed")
     
     print(f"\nDone! Found {len(third_party_imports)} third-party packages.")
