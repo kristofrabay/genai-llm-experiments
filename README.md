@@ -9,6 +9,10 @@ Repository for running various experiments with Large Language Models (LLMs) and
 - Topic-based Q&A with validation and summarization
 - Examples: NFL GOAT analysis, Bitcoin investment research, Tesla purchase decision making
 
+<div align="center">
+  <img src="output/research_experiment/langgraph.png" alt="Research Experiment Graph" width="350">
+</div>
+
 ### Social Media Agentic Team
 - Experiment with an agentic team of social media agents. Given a topic / social media post idea, multiple agents will kick off to generate content for specific social media platforms.
 
