@@ -16,6 +16,11 @@ Repository for running various experiments with Large Language Models (LLMs) and
 ### Social Media Agentic Team
 - Experiment with an agentic team of social media agents. Given a topic / social media post idea, multiple agents will kick off to generate content for specific social media platforms.
 
+<div align="center">
+  <h4>Agentic Flow (Platform-agnostic)</h4>
+  <img src="output/social_media_experiment/langgraph_subgraph.png" alt="Social Media Agentic Team Graph" width="250">
+</div>
+
 *More experiments to be added...*
 
 ## Tech Stack
