@@ -1,12 +1,14 @@
-IPython  # Not installed
-dotenv  # Not installed
-langchain_core  # Not installed
-langchain_openai  # Not installed
+IPython
+anthropic==0.45.0
+dotenv
+langchain_core
+langchain_openai
 langgraph==0.2.18
 nbformat==5.10.4
 openai==1.59.8
 pandas==2.2.3
-pkg_resources  # Not installed
+pkg_resources
 pydantic==2.10.5
 setuptools==75.8.0
-utils  # Not installed
+utils
+wikipedia==1.4.0
