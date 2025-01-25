@@ -23,6 +23,14 @@ Repository for running various experiments with Large Language Models (LLMs) and
 
 *More experiments to be added...*
 
+## Tests
+
+### Anthropic Citations
+
+- Testing new `citations` feature in Anthropic
+- Providing plain txt files, PDFs for 'RAG'-like tasks, such as QA and summarization - checking reference capabilities of `claude-3-5-sonnet-20241022`
+- [Jupyter Notebook](nb/anthropic-citations.ipynb)
+
 ## Tech Stack
 
 ### Frameworks & Libraries
