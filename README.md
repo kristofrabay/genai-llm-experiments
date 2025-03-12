@@ -21,6 +21,16 @@ Repository for running various experiments with Large Language Models (LLMs) and
   <img src="output/social_media_experiment/langgraph_subgraph.png" alt="Social Media Agentic Team Graph" width="250">
 </div>
 
+### OpenAI Response API and Agents Framework
+- Experiment with the OpenAI Response API and Agents Framework
+- testing new Response API with
+  - structured output (json_schema)
+  - web search tool
+- Agents Framework tests to be added...
+
+- [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
+
+
 *More experiments to be added...*
 
 ## Tests
