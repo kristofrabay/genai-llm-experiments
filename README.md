@@ -37,6 +37,7 @@ Repository for running various experiments with Large Language Models (LLMs) and
   - structured output (json_schema)
   - web search tool
   - compare `gpt-4o-search-preview` model with `gpt-4o` + web search tool in Response API
+  - multiple tools at once
   
 - Agents Framework tests to be added...
 
