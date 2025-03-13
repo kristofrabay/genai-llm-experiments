@@ -33,11 +33,15 @@ Repository for running various experiments with Large Language Models (LLMs) and
 
 ### OpenAI Response API and Agents Framework
 - Experiment with the OpenAI Response API and Agents Framework
-- testing new Response API with
+
+- Response API
   - structured output (json_schema)
   - web search tool
-  - compare `gpt-4o-search-preview` model with `gpt-4o` + web search tool in Response API
-  - multiple tools at once
+    - compare `gpt-4o-search-preview` model with `gpt-4o` + web search tool in Response API
+    - multiple tools at once
+  - file search tool
+    - explore direct vector search (manual RAG) vs. file search tool
+    - custom chunking and retrieval settings
   
 - Agents Framework tests to be added...
 
