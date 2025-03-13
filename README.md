@@ -42,6 +42,10 @@ Repository for running various experiments with Large Language Models (LLMs) and
   - file search tool
     - explore direct vector search (manual RAG) vs. file search tool
     - custom chunking and retrieval settings
+  - Computer Use tool
+    - Installed playwright browser to use it as a tool in the agentic loop
+    - Due to Zero Data Retention policy of OpenAI, the tool is not yet available for me for testing
+    - In a browser, a screenshot is taken to decide on the next action
   
 - Agents Framework tests to be added...
 
@@ -60,6 +64,10 @@ Repository for running various experiments with Large Language Models (LLMs) and
 1. Create virtual environment
 2. Install requirements: `pip install -r requirements.txt`
 3. Create `.env` file with required API keys
+
+For `playwright` to work, you need to:
+1. pip install pytest-playwright
+2. playwright install
 
 ## Notes
 
