@@ -21,6 +21,12 @@ Repository for running various experiments with Large Language Models (LLMs) and
   <img src="output/social_media_experiment/langgraph_subgraph.png" alt="Social Media Agentic Team Graph" width="250">
 </div>
 
+### Ambient Agent
+- Experiment with an ambient agent that can be used to interact with the user in a chat-like manner.
+  - Slack integration for human-in-the-loop ([Jupyter Notebook](nb/ambient_experiment/test_tools.ipynb))
+  - tbd
+
+
 *More experiments to be added...*
 
 ## Tests
