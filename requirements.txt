@@ -1,14 +1,14 @@
 IPython
 anthropic==0.45.0
-dotenv
 langchain_core
 langchain_openai
 langgraph==0.2.18
 nbformat==5.10.4
-openai==1.59.8
+openai==1.66.3
 pandas==2.2.3
 pkg_resources
+playwright==1.50.0
 pydantic==2.10.5
+requests==2.32.3
 setuptools==75.8.0
-utils
 wikipedia==1.4.0

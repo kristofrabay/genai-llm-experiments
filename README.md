@@ -32,9 +32,9 @@ Repository for running various experiments with Large Language Models (LLMs) and
 - [Jupyter Notebook](nb/anthropic-citations.ipynb)
 
 ### OpenAI Response API and Agents Framework
-- Experiment with the OpenAI Response API and Agents Framework
 
 - Response API
+  - [Jupyter Notebook](nb/openai-response-api-experiments.ipynb)
   - structured output (json_schema)
   - web search tool
     - compare `gpt-4o-search-preview` model with `gpt-4o` + web search tool in Response API
@@ -48,8 +48,8 @@ Repository for running various experiments with Large Language Models (LLMs) and
     - In a browser, a screenshot is taken to decide on the next action
   
 - Agents Framework tests to be added...
+ - [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
 
-- [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
 
 ## Tech Stack
 
