@@ -63,6 +63,19 @@ def main():
     # Folders to skip
     skip_folders = {'.venv', 'venv', '.env', 'env', '__pycache__', '.git', '.pytest_cache', '.ipynb_checkpoints'}
     
+    # Get local package names (directories that might be local packages)
+    local_packages = set()
+    for item in os.listdir(project_root):
+        item_path = project_root / item
+        if item_path.is_dir() and not item.startswith('.') and item not in skip_folders:
+            local_packages.add(item)
+    
+    # Explicitly add any other local packages or packages to exclude
+    packages_to_exclude = {'computer_use_utils', 'utils'}
+    local_packages.update(packages_to_exclude)
+    
+    print(f"Excluded packages: {', '.join(local_packages)}")
+    
     # Walk through all directories
     print(f"\nScanning project root: {project_root}\n")
     for root, dirs, files in os.walk(project_root):
@@ -87,9 +100,10 @@ def main():
                 all_imports.update(imports)
     
     print("\nAnalyzing imports...")
-    # Remove standard library modules
+    # Remove standard library modules and local packages
     stdlib_modules = set(sys.stdlib_module_names)
-    third_party_imports = {imp for imp in all_imports if imp not in stdlib_modules}
+    third_party_imports = {imp for imp in all_imports 
+                          if imp not in stdlib_modules and imp not in local_packages}
     
     # Get installed versions
     installed_packages = get_installed_packages()
