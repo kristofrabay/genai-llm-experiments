@@ -58,7 +58,10 @@ Repository for running various experiments with Large Language Models (LLMs) and
 
 - Agents Framework tests to be added...
  - [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
-
+ - Agents and their powerful arguments (instructions, handoffs, tools, etc.)
+ - Tools (built in such as WebSearch, custom, agents-as-tools)
+  - native tool calling and execution - no more manual function calling
+ - Handoffs (passing the conversation to another agent)
 
 ## Tech Stack
 
