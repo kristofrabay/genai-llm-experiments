@@ -53,7 +53,9 @@ Repository for running various experiments with Large Language Models (LLMs) and
     - Installed playwright browser to use it as a tool in the agentic loop
     - Due to Zero Data Retention policy of OpenAI, the tool is not yet available for me for testing
     - In a browser, a screenshot is taken to decide on the next action
-  
+  - Conversation State
+    - `previous_response_id` is used to handle the conversation history if org does not have Zero Data Retention policy
+
 - Agents Framework tests to be added...
  - [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
 
