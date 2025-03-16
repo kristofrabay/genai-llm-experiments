@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
 import os
 from datetime import datetime
 
@@ -12,7 +11,7 @@ np.random.seed(42)
 N = 0
 
 n1 = 45
-t1 = np.arange(0, N + n1, 2)  # 0,2,...,28 seconds
+t1 = np.arange(0, n1, 2)  # 0,2,...,28 seconds
 segment1 = np.random.normal(1000, 5, size=len(t1))
 # Optionally, force the last value to be exactly 1000 for a smooth transition.
 segment1[-1] = 1000
@@ -48,9 +47,9 @@ total_points = len(times)
 
 # --- Plot Setup ---
 fig, ax = plt.subplots(figsize=(10, 6))
-line, = ax.plot([], [], marker='o', linestyle='-', linewidth=2, markersize=5)
+line, = ax.plot(times, prices, marker='o', linestyle='-', linewidth=2, markersize=5)
 ax.set_title('Stock Price Chart for $BUDML')
-ax.set_xlabel('Time (minutes)')
+ax.set_xlabel('Time (seconds)')
 ax.set_ylabel('Stock Price (USD)')
 ax.grid(True)
 ax.set_xlim(times[0], times[-1])
@@ -58,27 +57,16 @@ ax.set_ylim(min(prices) - 20, max(prices) + 20)
 
 # Create snapshots directory if it doesn't exist
 script_dir = os.path.dirname(os.path.abspath(__file__))
-snapshot_dir = os.path.join(script_dir, 'stock_data_snapshots')
+snapshot_dir = script_dir
 if not os.path.exists(snapshot_dir):
     os.makedirs(snapshot_dir)
 
-# --- Animation Update Function ---
-def update(frame):
-    # frame corresponds to the index of the next data point
-    current_time = times[:frame+1]
-    current_prices = prices[:frame+1]
-    line.set_data(current_time, current_prices)
-    
-    # Save screenshot for each frame
-    current_date = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')  # More readable format with separators
-    filename = os.path.join(snapshot_dir, f'BUDML_{current_date}.png')
-    plt.savefig(filename)
-    
-    return line,
+# Save the final image with all data points
+current_date = datetime.now().strftime('%Y%m%d_%H%M%S')
+#filename = os.path.join(snapshot_dir, f'BUDML_FINAL_{current_date}.png')
+filename = os.path.join(snapshot_dir, f'BUDML_FINAL.png')
+plt.savefig(filename)
+print(f"Saved final image to: {filename}")
 
-# Create an animation that updates every 2 seconds (2000 ms).
-ani = animation.FuncAnimation(fig, update, frames=range(1, total_points),
-                              interval=1000, blit=False, repeat=False)
-
-plt.tight_layout()
-plt.show()
+# If you still want to show the plot
+# plt.show()
