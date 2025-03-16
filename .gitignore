@@ -22,3 +22,6 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db 
+
+# folders
+nb/ambient_experiment/stock_data/stock_data_snapshots
