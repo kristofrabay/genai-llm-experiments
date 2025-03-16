@@ -25,7 +25,7 @@ Repository for running various experiments with Large Language Models (LLMs) and
 - Experiment with an ambient agent that can be used to interact with the user in a chat-like manner.
   - Slack integration for human-in-the-loop ([Jupyter Notebook](nb/ambient_experiment/test_tools.ipynb))
     - Handles images, text, and basic file uploads
-  - tbd
+  - 'Real' stock data generation and saving plots to folder for later multi-modal LLM analysis
 
 
 *More experiments to be added...*
