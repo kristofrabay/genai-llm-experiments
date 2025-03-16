@@ -57,19 +57,20 @@ Repository for running various experiments with Large Language Models (LLMs) and
     - `previous_response_id` is used to handle the conversation history if org does not have Zero Data Retention policy
 
 - Agents Framework
- - [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
- - Agents and their powerful arguments (instructions, handoffs, tools, etc.)
- - Tools (built in such as WebSearch, custom, agents-as-tools)
-  - native tool calling and execution - no more manual function calling
- - Handoffs (passing the conversation to another agent)
-  - Prompt prefixes to help LLMs understand handoffs
-  - Handoff filters to limit the amount of information being sent to the next agent
-- Overall takeaways
-  - Agent and tool calling is great, works usually as expected!
-  - Handoffs are exremely prompt-sensitive
-  - Handoffs many times dont actually happen, unless prompted strictly
-  - For workflows, deterministic jobs such as LangGraph are much better. For open-ended tasks, where many many directions can be taken, handoffs might be a good option to run simulations.
-  - `gpt-4.5-preview` is SO much better than `gpt-4o` for handoffs!
+
+  - [Jupyter Notebook](nb/openai-agents-framework-experiments.ipynb)
+  - Agents and their powerful arguments (instructions, handoffs, tools, etc.)
+  - Tools (built in such as WebSearch, custom, agents-as-tools)
+    - native tool calling and execution - no more manual function calling
+  - Handoffs (passing the conversation to another agent)
+    - Prompt prefixes to help LLMs understand handoffs
+    - Handoff filters to limit the amount of information being sent to the next agent
+  - Overall takeaways
+    - Agent and tool calling is great, works usually as expected!
+    - Handoffs are exremely prompt-sensitive
+    - Handoffs many times dont actually happen, unless prompted strictly
+    - For workflows, deterministic jobs such as LangGraph are much better. For open-ended tasks, where many many directions can be taken, handoffs might be a good option to run simulations.
+    - `gpt-4.5-preview` is SO much better than `gpt-4o` for handoffs!
 
 *More tests to be added...*
 
