@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import re
 from datetime import datetime
 
+from openai import AsyncOpenAI
+client = AsyncOpenAI()
+from langchain_core.utils.function_calling import convert_to_openai_tool
+from agents import function_tool
+
 
 def parse_flight(flight):
     """
@@ -147,3 +152,133 @@ def get_flights_to_destinations(
     
     df = pd.DataFrame(all_flights)
     return df[df['price'] > 0]
+
+### SAME FUNCTION BUT DECORATED WITH function_tool
+
+@function_tool
+def get_flights_to_destinations_tool(
+    date: str,
+    from_airport: str,
+    to_airports: list[str],
+    max_stops: int,
+    #trip: str = "one-way",
+    #passengers_adults: int = 2,
+) -> pd.DataFrame:
+    """
+    Fetch flights to multiple destinations and return a combined DataFrame.
+    
+    Note: The fast_flights API doesn't support multiple destinations in a single call,
+    so this function makes separate API calls for each destination and combines the results.
+    
+    Args:
+        date: Flight date in YYYY-MM-DD format
+        from_airport: Departure airport code in IATA format (3-letter codes), such as "BUD"
+        to_airports: List of destination airport codes in IATA format (3-letter codes), such as ["CDG", "ORY", "BVA"]
+        max_stops: Maximum number of stops (default: 0)
+    
+    Returns:
+        pd.DataFrame: Combined DataFrame of all flights to the specified destinations
+    """
+    all_flights = []
+    
+    for to_airport in to_airports:
+        try:
+            result = get_flights(
+                flight_data=[
+                    FlightData(
+                        date=date, 
+                        from_airport=from_airport, 
+                        to_airport=to_airport, 
+                        max_stops=max_stops
+                    ),
+                ],
+                trip='one-way',
+                seat='economy',
+                passengers=Passengers(adults=2),
+                fetch_mode='local'
+            )
+        except Exception:
+            continue
+
+        #trip: Trip type, either "one-way" or "round-trip" (default: "one-way")
+        #seat: Seat class (default: "economy")
+        #passengers_adults: Number of adult passengers (default: 2)
+        #fetch_mode: API fetch mode (default: "local")
+        
+        flights = [parse_flight(flight) for flight in result.flights]
+        all_flights.extend(flights)
+    
+    df = pd.DataFrame(all_flights)
+    return df[df['price'] > 0]
+
+# THE BELOW IS NOT USED AS AGENTS SDK IS QUICKER TO SET UP
+
+def convert_to_openai_tool_format(func):
+    """
+    Convert a function to the OpenAI tool format with the correct structure.
+    """
+    # Get the original tool definition
+    tool_def = convert_to_openai_tool(func)
+    
+    # Restructure to match the required format
+    return {
+        "type": "function",
+        "name": tool_def["function"]["name"],
+        "description": tool_def["function"]["description"],
+        "parameters": tool_def["function"]["parameters"]
+    }
+
+
+async def ai(question: str, tools=[get_flights], stream=False, model="gpt-4.1", system_message = "", user_message_template = ""):
+
+    current_datetime = datetime.now().strftime('%Y-%m-%d %H:%M')
+    
+    if stream:
+        # Streaming
+        stream_response = await client.responses.create(
+            model=model,
+            input=[
+                {"role": "system", "content": system_message},
+                {
+                    "role": "user", 
+                    "content": user_message_template.format(
+                        question=question, 
+                        current_datetime=current_datetime
+                        )        
+                },
+            ],
+            tools=tools,
+            stream=True,
+        )
+
+        text_chunks = []
+        #md_display = display(Markdown(""), display_id=True)
+
+        async for event in stream_response:
+            #if hasattr(event, "type") and "text.delta" in event.type:
+            #    text_chunks.append(event.delta)
+            #    #print(event.delta, end="", flush=True)
+            #    md_display.update(Markdown("".join(text_chunks)))
+            
+            #print(event)
+            text_chunks.append(event)
+        
+        return text_chunks[-1].response #"".join(text_chunks)
+    
+    else:
+        response = await client.responses.create(
+            model=model,
+            input=[
+                {"role": "system", "content": system_message},
+                {
+                    "role": "user", 
+                    "content": user_message_template.format(
+                        question=question, 
+                        current_datetime=current_datetime
+                        )        
+                },
+            ],
+            tools=tools,
+        )
+
+        return response#.output_text
