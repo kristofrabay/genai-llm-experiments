@@ -26,7 +26,14 @@ Repository for running various experiments with Large Language Models (LLMs) and
   - Slack integration for human-in-the-loop ([Jupyter Notebook](nb/ambient_experiment/test_tools.ipynb))
     - Handles images, text, and basic file uploads
   - 'Real' stock data generation and saving plots to folder for later multi-modal LLM analysis
+  
+  
+### Flight Data Analysis
 
+- Experiment with flight data retrieval and analysis
+- Comparison between tool-calling agent and manual price optimization
+  - Fetching flight information for multiple destinations
+  - Showcasing OpenAI tool calling capabilities with flight search functions
 
 *More experiments to be added...*
 
