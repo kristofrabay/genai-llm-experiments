@@ -112,7 +112,7 @@ def get_flights_to_destinations(
         from_airport: Departure airport code in IATA format (3-letter codes), such as "BUD"
         to_airports: List of destination airport codes in IATA format (3-letter codes), such as ["CDG", "ORY", "BVA"]
         max_stops: Maximum number of stops (default: 0)
-        
+    
     Returns:
         pd.DataFrame: Combined DataFrame of all flights to the specified destinations
     """
