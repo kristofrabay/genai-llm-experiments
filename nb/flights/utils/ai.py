@@ -1,8 +1,13 @@
-from agents import Agent, Runner, function_tool, ModelSettings, WebSearchTool
+from dotenv import load_dotenv
+load_dotenv()
+
+from agents import Agent, Runner, function_tool, WebSearchTool
 from openai.types.responses import ResponseTextDeltaEvent, ResponseWebSearchCallInProgressEvent, ResponseWebSearchCallCompletedEvent
+
 from typing import List
 from IPython.display import display, Markdown
 from datetime import datetime
+import asyncio
 
 async def ai(
         question: str, 
@@ -83,6 +88,51 @@ async def ai(
         #print("=== Run complete ===")
 
         return result
+    
     else:
         result = await Runner.run(agent, formatted_question)
         return result
+
+async def conversation(payload: dict):
+    conversation_history = []
+    
+    while True:
+        q = input("\n\nHuman input: ")
+        # Clear the "Human input: " prompt after user enters text
+        print("\033[A\033[K", end="")  # Move up one line and clear it
+        
+        print("\n=== Human ===")
+        print(q)
+        
+        if q.lower() == "quit":
+            break
+            
+        print("\n=== AI ===")
+        
+        if not conversation_history:
+            # First turn
+            a = await ai(q, **payload)
+            conversation_history = a.to_input_list()
+        else:
+            # Subsequent turns
+            new_input = conversation_history + [{"role": "user", "content": q}]
+            a = await ai(new_input, **payload)
+            conversation_history = a.to_input_list()
+
+if __name__ == "__main__":
+
+    from tools import get_flights_to_destinations_tool, add_tool
+    from prompts import system_message, user_message_template
+    
+    default_payload = {
+        "agent_name": "Flight Assistant",
+        "system_message": system_message,
+        "user_message_template": user_message_template,
+        "tools": [get_flights_to_destinations_tool, add_tool, WebSearchTool()],
+        "stream": True,
+        "model": "gpt-4.1",
+        "format_to_md": False
+    }
+    
+    # Run the conversation function instead of a single query
+    asyncio.run(conversation(payload=default_payload))

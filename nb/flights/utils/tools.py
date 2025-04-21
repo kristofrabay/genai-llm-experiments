@@ -1,7 +1,11 @@
 from agents import function_tool
 import pandas as pd
 from fast_flights import FlightData, Passengers, get_flights
-from utils.utils import parse_flight
+
+try: #from ai script terminal run
+    from utils import parse_flight
+except: #from notebook
+    from utils.utils import parse_flight
 
 @function_tool
 async def add_tool(a: int, b: int) -> int:
