@@ -14,14 +14,9 @@ def get_flights_to_destinations_tool(
     from_airport: str,
     to_airports: list[str],
     max_stops: int,
-    #trip: str = "one-way",
-    #passengers_adults: int = 2,
 ) -> pd.DataFrame:
     """
     Fetch flights to multiple destinations and return a combined DataFrame.
-    
-    Note: The fast_flights API doesn't support multiple destinations in a single call,
-    so this function makes separate API calls for each destination and combines the results.
     
     Args:
         date: Flight date in YYYY-MM-DD format
@@ -30,7 +25,7 @@ def get_flights_to_destinations_tool(
         max_stops: Maximum number of stops (default: 0)
     
     Returns:
-        pd.DataFrame: Combined DataFrame of all flights to the specified destinations
+        Combined DataFrame of all flights to the specified destinations
     """
     all_flights = []
     
@@ -52,11 +47,6 @@ def get_flights_to_destinations_tool(
             )
         except Exception:
             continue
-
-        #trip: Trip type, either "one-way" or "round-trip" (default: "one-way")
-        #seat: Seat class (default: "economy")
-        #passengers_adults: Number of adult passengers (default: 2)
-        #fetch_mode: API fetch mode (default: "local")
         
         flights = [parse_flight(flight) for flight in result.flights]
         all_flights.extend(flights)
