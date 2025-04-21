@@ -30,10 +30,18 @@ Repository for running various experiments with Large Language Models (LLMs) and
   
 ### Flight Data Analysis
 
-- Experiment with flight data retrieval and analysis
+- Experiment with flight data retrieval and analysis using custom flight search tools
+- AI-powered flight assistant with OpenAI's tool calling capabilities
+  - Custom flight search tools with real-time data retrieval and processing
+  - Integrated memory and conversation history management
+  - Streaming responses with real-time tool execution events
+  - Interactive console-based conversation interface
+    - `fast-flights` does not work from terminal due to playwright issues, but from notebook demo is smooth
 - Comparison between tool-calling agent and manual price optimization
   - Fetching flight information for multiple destinations
-  - Showcasing OpenAI tool calling capabilities with flight search functions
+  - Dynamic visualization of price distributions
+  - Detailed flight data analysis including prices, durations, and options
+- [Jupyter Notebook](nb/flights/flights.ipynb)
 
 *More experiments to be added...*
 
