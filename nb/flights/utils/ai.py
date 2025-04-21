@@ -56,31 +56,29 @@ async def ai(
                 #print(f"Agent updated: {event.new_agent.name}")
                 continue
 
-            elif event.type == "run_item_stream_event":
-                if event.item.type == "tool_call_item":
-                    try:
-                        tool_name = event.item.raw_item.name
-                    except Exception as e:
-                        tool_name = event.item.raw_item.type
-                    try:
-                        tool_args = event.item.raw_item.arguments
-                        print(f"Tool {tool_name} called with arguments: {tool_args}")
-                    except Exception as e:
-                        continue
+            elif event.type == "run_item_stream_event" and event.item.type == "tool_call_item":
+                try:
+                    tool_name = event.item.raw_item.name
+                except Exception as e:
+                    tool_name = event.item.raw_item.type
+                try:
+                    tool_args = event.item.raw_item.arguments
+                    print(f"Tool {tool_name} called with arguments: {tool_args}")
+                except Exception as e:
+                    continue
                     
-
-                elif event.item.type == "tool_call_output_item":
-                    tool_name = event.item.raw_item['call_id'].split('_')[1]
-                    tool_output = str(event.item.output)[:250]
-                    print(f"Tool call {tool_name} returned with results: {tool_output}")
+            elif event.type == "run_item_stream_event" and event.item.type == "tool_call_output_item":
+                tool_name = event.item.raw_item['call_id'].split('_')[1]
+                tool_output = str(event.item.output)[:250]
+                print(f"Tool call {tool_name} returned with results: {tool_output}")
 
                 #elif event.item.type == "message_output_item":
                 #    print("------ Agent output ------")
                 #    print(f"{ItemHelpers.text_message_output(event.item)}")
                 #    print("------ / Agent output ------")
 
-                else:
-                    pass  # Ignore other event types
+            else:
+                pass  # Ignore other event types
 
         #print("=== Run complete ===")
 
