@@ -51,12 +51,12 @@ Repository for running various experiments with Large Language Models (LLMs) and
 
 <div align="center">
   <h4>Agent with tools (OpenAI Agents SDK)</h4>
-  <img src="output/web_search_agent_graph.png" alt="o3 with tools" width="400">
+  <img src="output/agents_sdk_experiments/web_search_agent_graph.png" alt="o3 with tools" width="400">
 </div>
 
 <div align="center">
   <h4>Agent with tools (OpenAI Agents SDK)</h4>
-  <img src="output/deep_research_agent_graph.png" alt="o3 with tools" width="300">
+  <img src="output/agents_sdk_experiments/deep_research_agent_graph.png" alt="o3 with tools" width="300">
 </div>
 
 *More experiments to be added...*
