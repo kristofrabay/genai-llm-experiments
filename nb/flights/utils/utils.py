@@ -145,11 +145,23 @@ def get_flights_to_destinations(
         #seat: Seat class (default: "economy")
         #passengers_adults: Number of adult passengers (default: 2)
         #fetch_mode: API fetch mode (default: "local")
+
+        for flight_obj in result.flights:
+            parsed_flight = parse_flight(flight_obj)
+            parsed_flight['destination_airport'] = to_airport  # Add destination airport ticker
+            all_flights.append(parsed_flight)
         
-        flights = [parse_flight(flight) for flight in result.flights]
-        all_flights.extend(flights)
+        #flights = [parse_flight(flight) for flight in result.flights]
+        #all_flights.extend(flights)
     
     df = pd.DataFrame(all_flights)
+    
+    # If no flights were found, all_flights will be empty,
+    # resulting in an empty DataFrame. In this case, return it directly.
+    # Otherwise, the 'price' column is guaranteed by parse_flight, so filter.
+    if df.empty:
+        return df
+    
     return df[df['price'] > 0]
 
 # THE BELOW IS NOT USED AS AGENTS SDK IS QUICKER TO SET UP
