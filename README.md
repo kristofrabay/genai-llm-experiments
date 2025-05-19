@@ -43,6 +43,22 @@ Repository for running various experiments with Large Language Models (LLMs) and
   - Detailed flight data analysis including prices, durations, and options
 - [Jupyter Notebook](nb/flights/flights.ipynb)
 
+### Deep Research with o3 + gpt-4.1
+- This experiment tests deep research capabilities by employing a two-agent setup using the Agents SDK. 
+- A primary research agent, powered by 'o3', orchestrates a 'gpt-4.1'-powered web search agent.
+- The primary agent breaks down a complex research query, delegates web searches, and synthesizes the gathered information into a comprehensive report. 
+- [Jupyter Notebook](nb/deep_research_o3_gpt41.ipynb)
+
+<div align="center">
+  <h4>Agent with tools (OpenAI Agents SDK)</h4>
+  <img src="output/web_search_agent_graph.png" alt="o3 with tools" width="400">
+</div>
+
+<div align="center">
+  <h4>Agent with tools (OpenAI Agents SDK)</h4>
+  <img src="output/deep_research_agent_graph.png" alt="o3 with tools" width="300">
+</div>
+
 *More experiments to be added...*
 
 ## Tests
