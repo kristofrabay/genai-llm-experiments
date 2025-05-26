@@ -47,6 +47,7 @@ Repository for running various experiments with Large Language Models (LLMs) and
 - This experiment tests deep research capabilities by employing a two-agent setup using the Agents SDK. 
 - A primary research agent, powered by 'o3', orchestrates a 'gpt-4.1'-powered web search agent.
 - The primary agent breaks down a complex research query, delegates web searches, and synthesizes the gathered information into a comprehensive report. 
+- Code Interpreter tool test
 - [Jupyter Notebook](nb/deep_research_o3_gpt41.ipynb)
 
 <div align="center">
